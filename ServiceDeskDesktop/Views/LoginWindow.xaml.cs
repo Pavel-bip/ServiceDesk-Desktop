@@ -21,7 +21,6 @@ namespace ServiceDeskDesktop.Views
         {
             InitializeComponent();
         }
-
         private async void Login_Click(object sender, RoutedEventArgs e)
         {
             string email = EmailTextBox.Text.Trim();

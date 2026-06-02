@@ -81,7 +81,6 @@ namespace ServiceDeskDesktop.Services
             }
             return list;
         }
-
         public void MarkAsClean(string documentId)
         {
             using var con = new SqliteConnection(connectionString);

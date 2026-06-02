@@ -14,10 +14,10 @@ namespace ServiceDeskDesktop.Views
         public ServiceRequest Result { get; private set; }
         private readonly ServiceRequest _original;
         private bool _isFioMode = true;
-        private List<UserModel> _engineers;
+        private List<UserModel>? _engineers;
 
-        private StackPanel _fioPanel;
-        private StackPanel _accountPanel;
+        private StackPanel? _fioPanel;
+        private StackPanel? _accountPanel;
 
         public RequestEditWindow(ServiceRequest request)
         {
@@ -82,7 +82,7 @@ namespace ServiceDeskDesktop.Views
             LoadEngineers();
         }
 
-        private void SelectComboItem(ComboBox combo, string value)
+        private static void SelectComboItem(ComboBox combo, string value)
         {
             foreach (ComboBoxItem item in combo.Items)
             {
@@ -206,7 +206,6 @@ namespace ServiceDeskDesktop.Views
                     "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-
             string newStatus = ((ComboBoxItem)StatusCombo.SelectedItem).Content.ToString();
             string oldStatus = _original?.Status;
 
@@ -245,7 +244,6 @@ namespace ServiceDeskDesktop.Views
             DialogResult = true;
             Close();
         }
-
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
             DialogResult = false;

@@ -336,7 +336,6 @@ namespace ServiceDeskDesktop.Views
                 StatusText.Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Colors.Orange);
             }
         }
-
         private void StatusText_MouseLeftButtonDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
             if (_conflictNotifications.Count > 0)
