@@ -1,0 +1,208 @@
+﻿<Window x:Class="ServiceDeskDesktop.Views.RequestEditWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="" Height="700" Width="600"
+        WindowStartupLocation="CenterOwner" ResizeMode="NoResize"
+        Background="{DynamicResource BackgroundBrush}" Icon="/Views/upscalemedia-transformed.png">
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer Grid.Row="0">
+            <StackPanel>
+                <TextBlock Text="ID заявки:" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,5,0,0"/>
+                <TextBox x:Name="IdTextBox" Height="28" IsReadOnly="True" 
+                         Background="{DynamicResource SurfaceAltBrush}" 
+                         BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1"
+                         Foreground="{DynamicResource TextPrimaryBrush}"/>
+
+                <TextBlock Text="Тип идентификации клиента:" FontWeight="Bold" 
+                           Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,15,0,0"/>
+                <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                    <RadioButton x:Name="FioRadio" Content="ФИО" IsChecked="True" 
+                                 GroupName="ClientType" Margin="0,0,20,0"
+                                 Checked="ClientType_Changed" Foreground="{DynamicResource TextSecondaryBrush}"/>
+                    <RadioButton x:Name="AccountRadio" Content="Лицевой счёт" 
+                                 GroupName="ClientType" Margin="0,0,20,0"
+                                 Checked="ClientType_Changed" Foreground="{DynamicResource TextSecondaryBrush}"/>
+                </StackPanel>
+
+                <StackPanel x:Name="FioPanel">
+                    <Grid Margin="0,5,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Margin="0,0,5,0">
+                            <TextBlock Text="Фамилия:" Foreground="{DynamicResource TextPrimaryBrush}"/>
+                            <TextBox x:Name="LastNameTextBox" Height="28" MaxLength="50"
+                                     BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1"
+                                     Background="{DynamicResource SurfaceBrush}" Foreground="{DynamicResource TextPrimaryBrush}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Margin="0,0,5,0">
+                            <TextBlock Text="Имя:" Foreground="{DynamicResource TextPrimaryBrush}"/>
+                            <TextBox x:Name="FirstNameTextBox" Height="28" MaxLength="50"
+                                     BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1"
+                                     Background="{DynamicResource SurfaceBrush}" Foreground="{DynamicResource TextPrimaryBrush}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <TextBlock Text="Отчество:" Foreground="{DynamicResource TextPrimaryBrush}"/>
+                            <TextBox x:Name="MiddleNameTextBox" Height="28" MaxLength="50"
+                                     BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1"
+                                     Background="{DynamicResource SurfaceBrush}" Foreground="{DynamicResource TextPrimaryBrush}"/>
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+
+                <StackPanel x:Name="AccountPanel" Visibility="Collapsed" Margin="0,5,0,0">
+                    <TextBlock Text="Номер лицевого счёта:" Foreground="{DynamicResource TextPrimaryBrush}"/>
+                    <TextBox x:Name="AccountTextBox" Height="28" MaxLength="100"
+                             BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1"
+                             Background="{DynamicResource SurfaceBrush}" Foreground="{DynamicResource TextPrimaryBrush}"/>
+                </StackPanel>
+
+                <TextBlock Text="Адрес подключения:" FontWeight="Bold" 
+                           Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,15,0,0"/>
+                <TextBox x:Name="AddressTextBox" Height="28" MaxLength="150"
+                         BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1"
+                         Background="{DynamicResource SurfaceBrush}" Foreground="{DynamicResource TextPrimaryBrush}"/>
+
+                <TextBlock Text="Контактный телефон (+7XXXXXXXXXX):" FontWeight="Bold" 
+                           Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,15,0,0"/>
+                <TextBox x:Name="PhoneTextBox" Height="28" MaxLength="12"
+                         BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1"
+                         Background="{DynamicResource SurfaceBrush}" Foreground="{DynamicResource TextPrimaryBrush}"/>
+
+                <TextBlock Text="Тип оборудования:" FontWeight="Bold" 
+                           Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,15,0,0"/>
+                <ComboBox x:Name="EquipmentTypeCombo" Height="28"
+                          BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1"
+                          Background="White" Foreground="#2D004D">
+                    <ComboBoxItem Content="ONT-модем"/>
+                    <ComboBoxItem Content="Wi-Fi маршрутизатор"/>
+                    <ComboBoxItem Content="ТВ-приставка"/>
+                    <ComboBoxItem Content="Видеокамера"/>
+                </ComboBox>
+
+                <TextBlock Text="Описание неисправности:" FontWeight="Bold" 
+                           Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,15,0,0"/>
+                <TextBox x:Name="DescriptionTextBox" Height="60" MaxLength="200"
+                         TextWrapping="Wrap" AcceptsReturn="True"
+                         BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1"
+                         Background="{DynamicResource SurfaceBrush}" Foreground="{DynamicResource TextPrimaryBrush}"/>
+
+                <TextBlock Text="Статус:" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,15,0,0"/>
+                <ComboBox x:Name="StatusCombo" Height="28"
+                          BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1"
+                          Background="White" Foreground="#2D004D">
+                    <ComboBoxItem Content="Новая"/>
+                    <ComboBoxItem Content="Назначена"/>
+                    <ComboBoxItem Content="В работе"/>
+                    <ComboBoxItem Content="Выполнена"/>
+                    <ComboBoxItem Content="Отложена"/>
+                    <ComboBoxItem Content="Отменена"/>
+                </ComboBox>
+
+                <TextBlock Text="Приоритет:" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,15,0,0"/>
+                <ComboBox x:Name="PriorityCombo" Height="28"
+                          BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1"
+                          Background="White" Foreground="#2D004D">
+                    <ComboBoxItem Content="Плановый"/>
+                    <ComboBoxItem Content="Срочный"/>
+                    <ComboBoxItem Content="Аварийный"/>
+                </ComboBox>
+
+                <TextBlock Text="Назначенный инженер:" FontWeight="Bold" Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,15,0,0"/>
+                <ComboBox x:Name="EngineerCombo" Height="28"
+                          BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1"
+                          Background="White" Foreground="#2D004D">
+                    <ComboBoxItem Content="Не назначен" Tag=""/>
+                </ComboBox>
+
+                <TextBlock Text="Серийный номер оборудования:" FontWeight="Bold" 
+                           Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,15,0,0"/>
+                <TextBox x:Name="SerialTextBox" Height="28" MaxLength="50"
+                         BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1"
+                         Background="{DynamicResource SurfaceBrush}" Foreground="{DynamicResource TextPrimaryBrush}"/>
+
+                <TextBlock Text="Внутренний комментарий (для диспетчера):" FontWeight="Bold" 
+                           Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,15,0,0"/>
+                <TextBox x:Name="InternalCommentTextBox" Height="45" MaxLength="400"
+                         TextWrapping="Wrap" AcceptsReturn="True"
+                         BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1"
+                         Background="{DynamicResource SurfaceBrush}" Foreground="{DynamicResource TextPrimaryBrush}"/>
+
+                <TextBlock Text="Внешний комментарий (для инженера):" FontWeight="Bold" 
+                           Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,15,0,0"/>
+                <TextBox x:Name="ExternalCommentTextBox" Height="45" MaxLength="250"
+                         TextWrapping="Wrap" AcceptsReturn="True"
+                         BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1"
+                         Background="{DynamicResource SurfaceBrush}" Foreground="{DynamicResource TextPrimaryBrush}"/>
+
+                <TextBlock Text="Метки (видны только диспетчеру):" FontWeight="Bold" 
+                           Foreground="{DynamicResource TextPrimaryBrush}" Margin="0,15,0,0"/>
+                <CheckBox x:Name="RequiresApprovalCheck" Content="Требует согласования с клиентом" 
+                          Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,5,0,0"/>
+                <CheckBox x:Name="AwaitingPartsCheck" Content="Ожидает запчастей" 
+                          Foreground="{DynamicResource TextSecondaryBrush}" Margin="0,5,0,0"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
+            <Button Content="💾 Сохранить" Width="110" Height="35" Margin="0,0,10,0"
+                    Click="SaveButton_Click" IsDefault="True"
+                    Foreground="White" FontWeight="Bold" FontSize="13"
+                    BorderThickness="0" Cursor="Hand">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#9B30FF"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="Bd" Background="{TemplateBinding Background}" 
+                                            CornerRadius="8" Padding="10,5">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Bd" Property="Background" Value="#7B1FA2"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Content="❌ Отмена" Width="100" Height="35"
+                    Click="CancelButton_Click" IsCancel="True"
+                    Foreground="White" FontWeight="Bold" FontSize="13"
+                    BorderThickness="0" Cursor="Hand">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="#B388FF"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border x:Name="Bd" Background="{TemplateBinding Background}" 
+                                            CornerRadius="8" Padding="10,5">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter TargetName="Bd" Property="Background" Value="#9575CD"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Window>
