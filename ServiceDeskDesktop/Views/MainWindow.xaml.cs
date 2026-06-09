@@ -347,7 +347,7 @@ namespace ServiceDeskDesktop.Views
                 UpdateOnlineStatus(CheckInternetConnection());
             }
         }
-        private void ReportButton_Click(object sender, RoutedEventArgs e)
+        private void ReportButton_Click(object sender, RoutedEventArgs e) 
         {
             var reportWindow = new ReportWindow();
             reportWindow.Owner = this;
